@@ -10,13 +10,14 @@
         </div>
         <q-space />
         <q-card bordered class="q-pa-md">
-          <q-form @submit="onSubmit" class="q-gutter-md">
-            <q-input square filled clearable v-model="form.email" type="email" label="Email" lazy-rules="ondemand" :rules="[
-              (val) =>
-                (val && val.length > 0) || 'Email is required. Email cannot be empty!',
-              (val) => (val && val.length < 81) || 'Invalid email!',
-            ]" hide-bottom-space />
-            <q-input square filled clearable v-model="form.password" type="password" label="Password"
+          <q-form @submit="enviarLogin" class="q-gutter-md">
+            <q-input square filled clearable v-model="formulario.email" type="email" label="Email" lazy-rules="ondemand"
+              :rules="[
+                (val) =>
+                  (val && val.length > 0) || 'Email is required. Email cannot be empty!',
+                (val) => (val && val.length < 81) || 'Invalid email!',
+              ]" hide-bottom-space />
+            <q-input square filled clearable v-model="formulario.senha" type="password" label="Password"
               lazy-rules="ondemand" :rules="[
                 (val) =>
                   (val && val.length > 0) ||

@@ -10,8 +10,9 @@
 
 const { configure } = require('quasar/wrappers')
 const path = require('path')
+require('dotenv').config()
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -20,8 +21,9 @@ module.exports = configure(function (/* ctx */) {
       // rawOptions: {},
       warnings: true,
       errors: true,
+      dev: true,
+      prod: false,
     },
-
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
 
@@ -55,6 +57,9 @@ module.exports = configure(function (/* ctx */) {
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      env: {
+        API_URL: ctx.dev ? process.env.API_DEV : process.env.API_PROD,
+      },
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -93,8 +98,8 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      https: true,
-      port: 8080,
+      https: false,
+      port: 9000,
       open: true, // opens browser window automatically
     },
 

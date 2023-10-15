@@ -1,7 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent, ref } from 'vue'
-import { useQuasar } from 'quasar'
-import { Router, useRouter } from 'vue-router'
+import { LocalStorage, useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
+import loginService from 'src/services/login-service'
+import { ILogin } from 'src/interfaces/login-interface'
+import { setLoginStorage } from 'src/functions/set-login-storage'
+import { removeLoginStorage } from 'src/functions/remove-login-storage'
 
 export default defineComponent({
   name: 'LoginPage',
@@ -11,60 +14,39 @@ export default defineComponent({
   },
 
   mounted() {
-    const logout = localStorage.getItem('logout')
-    if (logout === 'false') {
-      this.router.push({ name: 'home' })
-    }
+    const logout = LocalStorage.getItem('logout')
+    !logout ?? this.router.push({ name: 'home' })
   },
 
   setup() {
-    const { login } = loginService()
     const $q = useQuasar()
     const router = useRouter()
+    const formulario = ref({ email: '', senha: '' })
 
-    const form = ref({
-      email: '',
-      password: '',
-    })
-
-    async function onSubmit(): Promise<any> {
-      if (!form.value.email || !form.value.password) {
-        $q.notify({
-          message: 'Email and/or Password is required!',
-          icon: 'error',
-          color: 'negative',
-        })
+    async function enviarLogin() {
+      if (!formulario.value.email || !formulario.value.senha) {
+        $q.notify({ message: 'Email and/or Password is required!', icon: 'error', color: 'negative' })
       } else {
         try {
-          const usuario = {
-            email: form.value.email,
-            password: form.value.password,
-          }
-          const { data } = await login(usuario)
-          localStorage['userToken'] = data.token
-          localStorage['refreshToken'] = data.refreshToken
-          localStorage['admin'] = data.user.admin
-          localStorage['logout'] = 'false'
-          $q.notify({
-            message: 'Logged!',
-            icon: 'check',
-            color: 'positive',
-          })
+          const usuario: ILogin = { email: formulario.value.email, senha: formulario.value.senha }
+          const data = await loginService(usuario)
+          setLoginStorage(data.token, data.refreshToken, data.user.admin, data.logout)
+          $q.notify({ message: 'Logged!', icon: 'check', color: 'positive' })
           router.push({ name: 'home' })
         } catch (error) {
           console.error(error)
-          localStorage.removeItem('admin')
-          localStorage.removeItem('userToken')
-          localStorage.removeItem('logout')
-          router.push({ name: 'loginPage' }).then($q.notify('teste'))
+          removeLoginStorage()
+          router.push({ name: 'loginPage' }).then(() => {
+            $q.notify({ message: 'Incorrect email or password!', icon: 'error', color: 'negative' })
+          })
         }
       }
     }
 
     return {
       router,
-      form,
-      onSubmit,
+      formulario,
+      enviarLogin,
     }
   },
 })
