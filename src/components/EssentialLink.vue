@@ -1,14 +1,6 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
+  <q-item clickable :to="route" exact>
+    <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
 
@@ -19,8 +11,8 @@
   </q-item>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang='ts'>
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'EssentialLink',
@@ -35,9 +27,9 @@ export default defineComponent({
       default: ''
     },
 
-    link: {
-      type: String,
-      default: '#'
+    route: {
+      type: [String, Object] as const,
+      default: ''
     },
 
     icon: {
@@ -45,5 +37,5 @@ export default defineComponent({
       default: ''
     }
   }
-});
+})
 </script>

@@ -1,5 +1,7 @@
 import { boot } from 'quasar/wrappers'
 import axios, { AxiosInstance } from 'axios'
+import { removeLoginStorage } from 'src/functions/remove-login-storage'
+import { LocalStorage } from 'quasar'
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -18,7 +20,7 @@ const api = axios.create({
 async function refreshToken(error: Error) {
   return new Promise((resolve, reject) => {
     try {
-      const refresh_token = localStorage.getItem('refreshToken')
+      const refresh_token = LocalStorage.getItem('refreshToken')
       const parameters = {
         method: 'POST',
         headers: {
@@ -31,23 +33,17 @@ async function refreshToken(error: Error) {
       axios
         .post(process.env.API_URL + 'refresh', body, parameters)
         .then(async (res) => {
-          localStorage.setItem('userToken', res.data.data.token)
-          localStorage.setItem('refreshToken', res.data.data.refreshToken)
+          LocalStorage.set('userToken', res.data.data.token)
+          LocalStorage.set('refreshToken', res.data.data.refreshToken)
           return resolve(res.data.data.token)
         })
         .catch(() => {
-          localStorage.removeItem('userToken')
-          localStorage.removeItem('refreshToken')
-          localStorage.removeItem('admin')
-          localStorage.removeItem('logout')
+          removeLoginStorage()
           window.location.href = '/'
           return reject(error)
         })
     } catch (err) {
-      localStorage.removeItem('userToken')
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('admin')
-      localStorage.removeItem('logout')
+      removeLoginStorage()
       window.location.href = '/'
       return reject(err)
     }
