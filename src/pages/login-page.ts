@@ -5,11 +5,21 @@ import loginService from 'src/services/login-service'
 import { ILogin } from 'src/interfaces/login-interface'
 import { setLoginStorage } from 'src/functions/set-login-storage'
 import { removeLoginStorage } from 'src/functions/remove-login-storage'
+import ToolBar from 'src/components/ToolBar.vue'
 
 export default defineComponent({
   name: 'LoginPage',
 
+  components: {
+    ToolBar,
+  },
+
+  created() {
+    LocalStorage.set('tela_login', false)
+  },
+
   mounted() {
+    this.tela_login = LocalStorage.getItem('tela_login')
     const logout = LocalStorage.getItem('logout')
     !logout ?? this.router.push({ name: 'home' })
   },
@@ -18,6 +28,7 @@ export default defineComponent({
     const $q = useQuasar()
     const router = useRouter()
     const formulario = ref({ email: '', senha: '' })
+    const tela_login = ref(LocalStorage.getItem('tela_login'))
 
     async function enviarLogin() {
       try {
@@ -46,6 +57,7 @@ export default defineComponent({
     return {
       router,
       formulario,
+      tela_login,
       enviarLogin,
     }
   },

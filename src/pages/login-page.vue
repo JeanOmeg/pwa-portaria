@@ -1,35 +1,33 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <q-page>
-    <div class="row justify-center items-center col-12">
-      <div class="col-4 q-gutter-sm q-col-gutter-sm">
-        <q-space />
-        <div class="row justify-center text-bold text-primary" style="font-size: 1.5em">
-          Acesse sua conta da OnPortaria
-        </div>
-        <q-space />
-        <q-card bordered class="q-pa-md">
-          <q-form @submit="enviarLogin" class="q-gutter-md">
-            <q-input square filled clearable v-model="formulario.email" type="email" label="E-mail" :rules="[
-              (val) =>
-                (val && val.length > 0) || 'Email é obrigatório!',
-              (val) => (val && val.length < 81) || 'Email invalido!',
-            ]" hide-bottom-space />
-            <q-input square filled clearable v-model="formulario.senha" type="password" label="Senha" :rules="[
-              (val) =>
-                (val && val.length > 0) ||
-                'Password is required. Password cannot be empty!',
-              (val) => (val && val.length < 50) || 'Invalid password!',
-            ]" hide-bottom-space />
-            <div class="row justify-between">
-              <q-btn size="md" label="Registrar conta" color="negative" text-color="white" :to="{ name: 'registerPage' }"
-                style='min-width: 200px;' />
-              <q-btn label="Fazer login" color="primary" type="submit" size="md" style='min-width: 200px;' />
-            </div>
-          </q-form>
-        </q-card>
+  <tool-bar v-if="tela_login" />
+  <q-page class="row items-center justify-evenly">
+    <q-card bordered class="col-xs-10 col-sm-6 col-md-6 col-lg-4 q-pa-md">
+      <div class="text-bold text-primary text-center q-ma-lg" style="font-size: 1.5em;">
+        <q-btn class="col-12" icon="apartment" color="primary" size="xl" />
       </div>
-    </div>
+      <div class="text-bold text-primary text-center q-ma-lg" style="font-size: 1.5em;">
+        <span>Acesse sua conta OnPortaria</span>
+      </div>
+      <q-form @submit="enviarLogin" class="q-gutter-md">
+        <q-input square filled clearable v-model="formulario.email" type="email" label="E-mail" :rules="[
+          (val) =>
+            (val && val.length > 0) || 'Email é obrigatório!',
+          (val) => (val && val.length < 81) || 'Email invalido!',
+        ]" hide-bottom-space />
+        <q-input square filled clearable v-model="formulario.senha" type="password" label="Senha" :rules="[
+          (val) =>
+            (val && val.length > 0) ||
+            'Senha é obrigatório!',
+          (val) => (val && val.length < 50) || 'Senha invalida!',
+        ]" hide-bottom-space />
+        <div class="row justify-between col-12">
+          <q-btn class="col-5" size="md" label="Cadastro" color="primary" text-color="white"
+            :to="{ name: 'registerPage' }" />
+          <q-btn class="col-5" label="Login" color="primary" type="submit" size="md" />
+        </div>
+      </q-form>
+    </q-card>
   </q-page>
 </template>
 
