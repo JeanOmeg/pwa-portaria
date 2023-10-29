@@ -42,7 +42,7 @@ export default defineComponent({
   name: 'ToolBar',
 
   components: {
-    EssentialLink,
+    EssentialLink
   },
 
   setup () {
@@ -58,7 +58,7 @@ export default defineComponent({
         $q.notify({
           message: 'Deslogado!S',
           icon: 'error',
-          color: 'negative',
+          color: 'negative'
         })
         router.push({ name: 'loginPage' })
       } catch (error) {
@@ -66,7 +66,7 @@ export default defineComponent({
         $q.notify({
           message: 'Erro! Você não está logado!',
           icon: 'error',
-          color: 'negative',
+          color: 'negative'
         })
       }
     }
@@ -76,14 +76,14 @@ export default defineComponent({
         title: 'Tasks',
         caption: '',
         icon: 'library_add_check',
-        route: { name: 'home' },
+        route: { name: 'home' }
       },
       {
         title: 'New task',
         caption: '',
         icon: 'add_task',
-        route: { name: 'formTask' },
-      },
+        route: { name: 'formTask' }
+      }
     ])
 
     const adminList = ref([
@@ -91,14 +91,14 @@ export default defineComponent({
         title: 'All tasks',
         caption: '',
         icon: 'fact_check',
-        route: { name: 'allTasks' },
+        route: { name: 'allTasks' }
       },
       {
         title: 'All users',
         caption: '',
         icon: 'group',
-        route: { name: 'allUsers' },
-      },
+        route: { name: 'allUsers' }
+      }
     ])
 
     const drawer = ref(false)
@@ -111,6 +111,6 @@ export default defineComponent({
       admin,
       logoutService
     }
-  },
+  }
 })
 </script>

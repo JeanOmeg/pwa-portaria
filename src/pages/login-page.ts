@@ -11,26 +11,26 @@ export default defineComponent({
   name: 'LoginPage',
 
   components: {
-    ToolBar,
+    ToolBar
   },
 
-  created() {
+  created () {
     LocalStorage.set('tela_login', false)
   },
 
-  mounted() {
+  mounted () {
     this.tela_login = LocalStorage.getItem('tela_login')
     const logout = LocalStorage.getItem('logout')
     !logout ?? this.router.push({ name: 'home' })
   },
 
-  setup() {
+  setup () {
     const $q = useQuasar()
     const router = useRouter()
     const formulario = ref({ email: '', senha: '' })
     const tela_login = ref(LocalStorage.getItem('tela_login'))
 
-    async function enviarLogin() {
+    async function enviarLogin () {
       try {
         if (!formulario.value.email || !formulario.value.senha) {
           $q.notify({ message: 'Email e/ou Senha obrigatório!', icon: 'error', color: 'negative' })
@@ -58,7 +58,7 @@ export default defineComponent({
       router,
       formulario,
       tela_login,
-      enviarLogin,
+      enviarLogin
     }
-  },
+  }
 })

@@ -13,19 +13,19 @@ declare module '@vue/runtime-core' {
 const api = axios.create({
   baseURL: process.env.API_URL,
   headers: {
-    'Content-Type': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 })
 
-async function refreshToken(error: Error) {
+async function refreshToken (error: Error) {
   return new Promise((resolve, reject) => {
     try {
       const refresh_token = LocalStorage.getItem('refreshToken')
       const parameters = {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${refresh_token}`,
-        },
+          Authorization: `Bearer ${refresh_token}`
+        }
       }
 
       const body = {}

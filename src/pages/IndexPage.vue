@@ -18,7 +18,7 @@ export default defineComponent({
   name: 'homePage',
 
   components: {
-    ToolBar,
+    ToolBar
   },
 
   created () {
