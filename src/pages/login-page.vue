@@ -10,7 +10,7 @@
         <span>Acesse sua conta OnPortaria</span>
       </div>
       <q-form @submit="enviarLogin" class="q-gutter-md">
-        <q-input square filled clearable v-model="formulario.email" type="email" label="E-mail" :rules="[
+        <q-input square filled clearable v-model="formulario.login" type="text" label="Login" :rules="[
           (val) =>
             (val && val.length > 0) || 'Email é obrigatório!',
           (val) => (val && val.length < 81) || 'Email invalido!',

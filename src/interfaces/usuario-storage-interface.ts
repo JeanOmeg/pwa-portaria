@@ -1,8 +1,6 @@
 export interface IUsuarioStorage {
   token: string
   refreshToken: string
-  user: {
-    admin: boolean
-  }
+  id_tipo_usuario: number
   logout: boolean
 }

@@ -27,21 +27,21 @@ export default defineComponent({
   setup () {
     const $q = useQuasar()
     const router = useRouter()
-    const formulario = ref({ email: '', senha: '' })
+    const formulario = ref({ login: '', senha: '' })
     const tela_login = ref(LocalStorage.getItem('tela_login'))
 
     async function enviarLogin () {
       try {
-        if (!formulario.value.email || !formulario.value.senha) {
+        if (!formulario.value.login || !formulario.value.senha) {
           $q.notify({ message: 'Email e/ou Senha obrigatório!', icon: 'error', color: 'negative' })
         } else {
-          const usuario: ILogin = { email: formulario.value.email, senha: formulario.value.senha }
+          const usuario: ILogin = { login: formulario.value.login, senha: formulario.value.senha }
           const data = await loginService(usuario)
 
-          setLoginStorage(data.token, data.refreshToken, data.user.admin, data.logout)
+          setLoginStorage(data.token, data.refreshToken, data.id_tipo_usuario, data.logout)
 
           $q.notify({ message: 'Logged!', icon: 'check', color: 'positive' })
-          router.push({ name: 'home' })
+          router.push({ name: 'homePage' })
         }
       } catch (error) {
         console.error(error)
