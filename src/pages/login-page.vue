@@ -6,7 +6,9 @@
         <q-btn class='col-12' icon='apartment' color='primary' size='xl' />
       </div>
       <div class='text-bold text-primary text-center q-ma-lg' style='font-size: 1.5em'>
-        <span>Acesse sua conta OnPortaria</span>
+        <span>
+          Acesse sua conta OnPort
+        </span>
       </div>
       <q-form @submit='enviarLogin' class='q-gutter-md'>
         <q-input square filled clearable v-model='formulario.login' type='text' label='Login' :rules="[ (val) => (val && val.length > 0) || 'Email é obrigatório!', (val) => (val && val.length < 81) || 'Email invalido!' ]" hide-bottom-space />
@@ -21,8 +23,8 @@
 </template>
 
 <script lang="ts">
-  import loginPage from './login-page'
-  export default loginPage
+import loginPage from './login-page'
+export default loginPage
 </script>
 
 <style>

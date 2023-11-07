@@ -71,6 +71,7 @@ module.exports = {
   },
 
   rules: {
+    'indent': ['error', 2],
     'vue/html-indent': 'error',
     'vue/html-quotes': ['error', 'single', { avoidEscape: true }],
     "vue/max-attributes-per-line": ["error", {

@@ -1,10 +1,21 @@
-import { LocalStorage } from 'quasar'
+import { LocalStorage, QVueGlobals } from 'quasar'
+import { IUsuarioStorage } from 'src/interfaces/usuario-storage-interface'
+import { Router } from 'vue-router'
 
-export function setLoginStorage (token: string, refresh_token: string, id_tipo_usuario: number, id_usuario: number): void {
-  LocalStorage.set('token', token)
-  LocalStorage.set('refresh_token', refresh_token)
-  LocalStorage.set('id_tipo_usuario', id_tipo_usuario)
-  LocalStorage.set('id_usuario', id_usuario)
-  LocalStorage.set('admin', id_tipo_usuario)
-  LocalStorage.set('logado', true)
+export async function setLoginStorage (data: IUsuarioStorage, $q: QVueGlobals, router: Router): Promise<void> {
+  LocalStorage.remove('tela_login')
+
+  if (!data.logado) {
+    data.logado = true
+  }
+
+  const usuario_storage = Object.keys(data) as (keyof IUsuarioStorage)[]
+
+  for (const key of usuario_storage) {
+    LocalStorage.set(key, data[key] as any)
+  }
+
+  const notificacao = 'Logado!'
+  $q.notify({ message: notificacao, icon: 'check', color: 'positive' })
+  await router.push({ name: 'home-page' })
 }

@@ -15,11 +15,11 @@ require('dotenv').config()
 module.exports = configure(function (ctx) {
   return {
     eslint: {
-      fix: true,
+      // fix: true,
       include: ['./src/**/*.{ts,js,vue}'],
       // exclude: [],
       // rawOptions: {},
-      warnings: false,
+      warnings: true,
       errors: true
     },
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature

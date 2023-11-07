@@ -10,25 +10,18 @@
 </template>
 
 <script lang="ts">
-  import { LocalStorage } from 'quasar'
-  import { defineComponent, ref } from 'vue'
-  import ToolBar from 'src/components/ToolBar.vue'
+import { defineComponent } from 'vue'
+import ToolBar from 'src/components/ToolBar.vue'
 
-  export default defineComponent({
-    name: 'home-page',
+export default defineComponent({
+  name: 'home-page',
 
-    components: {
-      ToolBar
-    },
+  components: {
+    ToolBar
+  },
 
-    created () {
-      LocalStorage.set('tela_login', true)
-    },
-
-    setup () {
-      const tela_login = ref(LocalStorage.getItem('tela_login'))
-
-      return { tela_login }
-    }
-  })
+  setup () {
+    return {}
+  }
+})
 </script>

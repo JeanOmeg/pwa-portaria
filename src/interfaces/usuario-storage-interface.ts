@@ -3,5 +3,14 @@ export interface IUsuarioStorage {
   refresh_token: string
   id_tipo_usuario: number
   id_usuario: number
-  logout: boolean
+  logado: boolean
+}
+
+export interface IUsuarioStorageString {
+  token: string
+  refresh_token: string
+  id_tipo_usuario: string
+  id_usuario: string
+  admin: string
+  logado: string
 }

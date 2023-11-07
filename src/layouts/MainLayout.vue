@@ -7,13 +7,13 @@
 </template>
 
 <script>
-  import { defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
-  export default defineComponent({
-    name: 'main-layout',
+export default defineComponent({
+  name: 'main-layout',
 
-    setup () {
-      return {}
-    }
-  })
+  setup () {
+    return {}
+  }
+})
 </script>
