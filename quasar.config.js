@@ -15,14 +15,12 @@ require('dotenv').config()
 module.exports = configure(function (ctx) {
   return {
     eslint: {
-      // fix: true,
-      // include: [],
+      fix: true,
+      include: ['./src/**/*.{ts,js,vue}'],
       // exclude: [],
       // rawOptions: {},
-      warnings: true,
-      errors: true,
-      dev: true,
-      prod: false
+      warnings: false,
+      errors: true
     },
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -57,7 +55,6 @@ module.exports = configure(function (ctx) {
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
-      env: require('dotenv').config().parsed,
       env: {
         API_URL: ctx.dev ? process.env.API_DEV : process.env.API_PROD
       },

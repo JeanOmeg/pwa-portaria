@@ -20,7 +20,7 @@ const api = axios.create({
 async function refreshToken (error: Error) {
   return new Promise((resolve, reject) => {
     try {
-      const refresh_token = LocalStorage.getItem('refreshToken')
+      const refresh_token = LocalStorage.getItem('refresh_token')
       const parameters = {
         method: 'POST',
         headers: {
@@ -33,9 +33,9 @@ async function refreshToken (error: Error) {
       axios
         .post(process.env.API_URL + 'refresh', body, parameters)
         .then(async (res) => {
-          LocalStorage.set('userToken', res.data.data.token)
-          LocalStorage.set('refreshToken', res.data.data.refreshToken)
-          return resolve(res.data.data.token)
+          LocalStorage.set('token', res.data.token)
+          LocalStorage.set('refresh_token', res.data.refreshToken)
+          return resolve(res.data.token)
         })
         .catch(() => {
           removeLoginStorage()
@@ -51,7 +51,7 @@ async function refreshToken (error: Error) {
 }
 
 api.interceptors.request.use((request) => {
-  const token = localStorage.getItem('userToken')
+  const token = localStorage.getItem('token')
   if (token) {
     request.headers.Authorization = `Bearer ${token}`
   }
@@ -69,10 +69,7 @@ api.interceptors.response.use(
       config.headers['Authorization'] = `Bearer ${token}`
       return api(config)
     }
-    localStorage.removeItem('userToken')
-    localStorage.removeItem('refreshToken')
-    localStorage.removeItem('admin')
-    localStorage.removeItem('logout')
+    removeLoginStorage()
     return Promise.reject(error)
   }
 )

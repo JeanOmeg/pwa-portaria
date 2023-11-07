@@ -1,34 +1,53 @@
 {
   "editor.cursorWidth": 2,
+  "editor.tabSize": 2,
   "editor.cursorSurroundingLines": 1,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
-  "diffEditor.codeLens": true,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 120,
+  "editor.renderLineHighlight": "gutter",
   "editor.minimap.enabled": false,
+  "editor.parameterHints.enabled": true,
+  "editor.defaultColorDecorators": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "diffEditor.codeLens": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Dracula",
+  "workbench.startupEditor": "none",
+  "workbench.editor.wrapTabs": true,
   "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "explorer.confirmDelete": false,
   "code-runner.clearPreviousOutput": true,
   "code-runner.executorMap": {
     "javascript": "node",
     "typescript": "ts-node"
   },
-  "editor.wordWrap": "on",
-  "editor.wordWrapColumn": 120,
-  "editor.renderLineHighlight": "gutter",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.parameterHints.enabled": true,
   "breadcrumbs.enabled": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.tabSize": 2,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.semicolons": "remove",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.format.semicolons": "remove",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "material-icon-theme.files.associations": {
+    "*.dbml": "Database",
+    "*.route.ts": "Routing",
+  },
+  "material-icon-theme.folders.associations": {
+    "migrations": "Queue",
+    "seeders": "Meta",
+    "dbml": "Database",
+    "domain": "Controller",
+    "route": "Routes",
+    "type": "Typescript"
+  },
 }

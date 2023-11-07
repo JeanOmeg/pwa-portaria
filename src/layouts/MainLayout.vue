@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR lFr">
+  <q-layout view='hHh lpR lFr'>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+  import { defineComponent } from 'vue'
 
-export default defineComponent({
-  name: 'MainLayout',
+  export default defineComponent({
+    name: 'main-layout',
 
-  setup () {
-    return {}
-  }
-})
+    setup () {
+      return {}
+    }
+  })
 </script>
