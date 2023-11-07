@@ -2,13 +2,7 @@
   <q-header elevated>
     <q-toolbar class='row justify-between bg-primary text-white'>
       <div>
-        <q-btn
-          v-if='logado'
-          size='md'
-          icon='menu'
-          aria-label='Menu'
-          @click='drawer = !drawer'
-        />
+        <q-btn v-if='logado' size='md' icon='menu' aria-label='Menu' @click='drawer = !drawer' />
       </div>
       <div>
         <q-toolbar-title style='font-size: 1.7rem'>
@@ -16,39 +10,18 @@
         </q-toolbar-title>
       </div>
       <div>
-        <q-btn
-          v-if='logado'
-          icon='logout'
-          color='negative'
-          size='md'
-          @click='logoutService'
-        />
+        <q-btn v-if='logado' icon='logout' color='negative' size='md' click='logoutService' />
       </div>
     </q-toolbar>
     <q-space />
   </q-header>
-  <q-drawer
-    v-model='drawer'
-    :width='150'
-    elevated
-    mini-to-overlay
-    :no-mini-animation='false'
-    class='bg-white'
-  >
+  <q-drawer v-model='drawer' :width='150' elevated mini-to-overlay :no-mini-animation='false' class='bg-white'>
     <q-list>
       <div>
-        <EssentialLink
-          v-for='link in link_list'
-          :key='link.title'
-          v-bind='link'
-        />
+        <EssentialLink v-for='link in link_list' :key='link.title' v-bind='link' />
       </div>
       <div v-if='verificaAdmin()'>
-        <EssentialLink
-          v-for='link in adminList'
-          :key='link.title'
-          v-bind='link'
-        />
+        <EssentialLink v-for='link in adminList' :key='link.title' v-bind='link' />
       </div>
     </q-list>
   </q-drawer>

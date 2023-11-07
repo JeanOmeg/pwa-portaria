@@ -73,6 +73,19 @@ module.exports = {
   rules: {
     'vue/html-indent': 'error',
     'vue/html-quotes': ['error', 'single', { avoidEscape: true }],
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": {
+        "max": 10
+      },
+      "multiline": {
+        "max": 10
+      }
+    }],
+    "vue/first-attribute-linebreak": ["error", {
+      "singleline": "beside",
+      "multiline": "below"
+    }],
+    "vue/mustache-interpolation-spacing": ["error", "always"],
     "vue/component-definition-name-casing": ["error", "kebab-case"],
     "prefer-promise-reject-errors": "off",
     "quotes": ["error", "single", { "avoidEscape": true }],
