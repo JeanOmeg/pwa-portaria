@@ -8,8 +8,9 @@ const local_storage: IUsuarioStorageString = {
   refresh_token: 'refresh_token',
   id_tipo_usuario: 'id_tipo_usuario',
   id_usuario: 'id_usuario',
-  admin: 'admin',
-  logado: 'logado'
+  logado: 'logado',
+  login: 'login',
+  id_condominio: 'id_condominio'
 }
 
 export async function removeLoginStorage (Q: QVueGlobals, router: Router): Promise<void> {

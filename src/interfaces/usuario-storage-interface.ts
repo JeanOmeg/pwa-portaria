@@ -11,6 +11,7 @@ export interface IUsuarioStorageString {
   refresh_token: string
   id_tipo_usuario: string
   id_usuario: string
-  admin: string
   logado: string
+  login: string
+  id_condominio: string
 }

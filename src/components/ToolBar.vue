@@ -33,6 +33,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 import { LocalStorage, useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import { removeLoginStorage } from 'src/functions/remove-login-storage'
+import { ETipoUsuario } from 'src/enum/tipo-usuario-enum'
 
 export default defineComponent({
   name: 'tool-bar',
@@ -59,7 +60,7 @@ export default defineComponent({
     }
 
     function verificaAdmin () {
-      return admin.value = (LocalStorage.getItem('id_tipo_usuario') as number) === 5
+      return admin.value = (LocalStorage.getItem('id_tipo_usuario') as number) === ETipoUsuario.super_admin
     }
 
     const link_list = ref([

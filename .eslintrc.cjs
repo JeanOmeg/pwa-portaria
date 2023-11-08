@@ -97,6 +97,8 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
     "space-before-function-paren": "error",
+    'object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
     "no-undef": "off",
     "array-bracket-spacing": "error",
     "comma-dangle":"error",
